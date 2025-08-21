@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Training Provider</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: ;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+header h1 span{
+    color: rgb(234, 48, 79);
+}
+.nav3{
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+}
+.nav3 ul{
+    list-style: none;
+    text-align: center;
+}
+.nav3 ul li{
+    display: inline-block;
+    width: 150px;
+    position: relative;
+    z-index: 99;
+}
+.nav3 ul li a{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    display: block;
+}
+.nav3 ul li a:hover{
+    color: rgb(234, 48, 79);
+}
+.nav3 ul li i{
+    color: rgb(234, 48, 79);
+    margin: 0px 5px;
+}
+.nav3 ul ul{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    display: none;
+}
+.nav3 ul ul li{
+    background-color: white;
+    border-bottom: 1px solid rgb(234, 48, 79);
+}
+.nav3 ul li:hover ul{
+    display: block;
+}
+.btn-home {
+    
+      color: #333;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .btn-home:hover {
+      background-color: rgb(234, 48, 79);
+    }
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    background-color: #f2f2f2;
+    padding: 2rem 0;
+}
+
+.hero h2 {
+    margin: 0;
+}
+
+.hero p {
+    color: #777;
+}
+
+.hero a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero a:hover {
+    background-color: #555;
+}
+
+/* Courses Section */
+.courses {
+    padding: 2rem 0;
+}
+
+.courses h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.course {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* About Section */
+.about {
+    background-color: #f2f2f2;
+    padding: 2rem 0;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about p {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.contact h2 {
+    margin-bottom: 2rem;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact li {
+    margin-bottom: 1rem;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Learn <span>Hub</span></h1>
+        <nav class="nav3">
+            <ul>
+                <a class="btn-home" href="LearnHub.html">Home</a>
+                <li><a href="#"><i class="fa fa-puzzle-piece"></i>Trainings<i class="fa fa-caret-down"></i></a></li>
+                <li><a href="#courses"><i class="fa fa-book"></i>Courses</a></li>
+                <li><a href="#"><i class="fa fa-briefcase"></i>Counsulting</a></li>
+                <li><a href="#"><i class="fa fa-users"></i>Community</a></li>
+                <li><a href="#"><i class="fa fa-search"></i>Find</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Welcome to Learn Hub</h2>
+        <p>Unlock your potential with our diverse range of courses.</p>
+        <a href="#courses">Explore Courses</a>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <h2>Our Courses</h2>
+        <!-- Industry-Specific Courses -->
+        <div class="course">
+            <h3>Industry-Specific Courses</h3>
+            <p>Offering courses that cater to specific industries such as IT, healthcare, finance, marketing, and more.</p>
+        </div>
+        <!-- Professional Development Courses -->
+        <div class="course">
+            <h3>Professional Development Courses</h3>
+            <p>Enhance your skills and knowledge to advance your career with courses on leadership, communication, project management, and time management.</p>
+        </div>
+        <!-- Certification Preparation Courses -->
+        <div class="course">
+            <h3>Certification Preparation Courses</h3>
+            <p>Prepare for professional certifications in various fields to enhance your employability.</p>
+        </div>
+        <!-- Language Courses -->
+        <div class="course">
+            <h3>Language Courses</h3>
+            <p>Learn popular languages or those relevant to your needs with our language courses.</p>
+        </div>
+        <!-- Creative Arts Courses -->
+        <div class="course">
+            <h3>Creative Arts Courses</h3>
+            <p>Explore your creativity with courses on photography, writing, painting, music, and filmmaking.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>Your Training Provider is dedicated to providing high-quality training and education to individuals and businesses worldwide. Our team of experts ensures that you receive the best learning experience.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or inquiries, feel free to get in touch with us:</p>
+        <ul>
+            <li>Email: learnhub@gmail.com</li>
+            <li>Phone: +1 (123) 456-7890</li>
+        </ul>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <marquee behavior="" direction="left"><p>&copy; 2025 Your Training Provider. All rights reserved.</p></marquee>
+    </footer>
+</body>
+</html>

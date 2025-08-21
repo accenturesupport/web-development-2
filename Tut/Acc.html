@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accenture - Let there be change</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --accenture-purple: #A100FF;
+            --accenture-dark: #000;
+            --accenture-light: #fff;
+            --accenture-gray: #f5f5f5;
+            --accenture-dark-gray: #333;
+            --accenture-medium-gray: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Accenture Circular', Arial, sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'Accenture Circular';
+            src: url('https://www.accenture.com/_acnmedia/Fonts/Accenture-Circular/AccentureCircular-Regular.woff2') format('woff2'),
+                 url('https://www.accenture.com/_acnmedia/Fonts/Accenture-Circular/AccentureCircular-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Accenture Circular';
+            src: url('https://www.accenture.com/_acnmedia/Fonts/Accenture-Circular/AccentureCircular-Bold.woff2') format('woff2'),
+                 url('https://www.accenture.com/_acnmedia/Fonts/Accenture-Circular/AccentureCircular-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+        
+        body {
+            color: var(--accenture-dark);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--accenture-dark);
+            color: var(--accenture-light);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            background-color: var(--accenture-dark);
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .header-top-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        .header-top-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .header-top-links a {
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        .header-main {
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-nav-list {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .main-nav-list > li {
+            position: relative;
+        }
+        
+        .main-nav-list > li > a {
+            color: var(--accenture-light);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .main-nav-list > li > a i {
+            font-size: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .main-nav-list > li:hover > a i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--accenture-light);
+            color: var(--accenture-dark);
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .main-nav-list > li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown a:hover {
+            background-color: var(--accenture-gray);
+            color: var(--accenture-purple);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .search-btn, .country-selector {
+            color: var(--accenture-light);
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            color: var(--accenture-light);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .hero-slides {
+            position: relative;
+            height: 100%;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--accenture-light);
+            width: 100%;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+        
+        .hero-content h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--accenture-purple);
+            color: var(--accenture-light);
+        }
+        
+        .btn-primary:hover {
+            background-color: #8a00d6;
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--accenture-light);
+            color: var(--accenture-light);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background-color: var(--accenture-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--accenture-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .service-content p {
+            color: var(--accenture-medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        .service-link {
+            color: var(--accenture-purple);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .service-link i {
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .service-link:hover i {
+            transform: translateX(3px);
+        }
+        
+        /* Insights Section */
+        .insights-section {
+            padding: 80px 0;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .insight-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .insight-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .insight-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .insight-content {
+            padding: 25px;
+        }
+        
+        .insight-category {
+            display: inline-block;
+            color: var(--accenture-purple);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .insight-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .insight-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--accenture-medium-gray);
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--accenture-dark);
+            color: var(--accenture-light);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--accenture-light);
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accenture-purple);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-copyright {
+            color: #999;
+            font-size: 12px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            color: #ccc;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .footer-social a:hover {
+            color: var(--accenture-purple);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background-color: var(--accenture-dark);
+            padding: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+            overflow-y: auto;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-list > li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .mobile-nav-list > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            color: var(--accenture-light);
+            font-weight: 500;
+        }
+        
+        .mobile-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+        
+        .mobile-dropdown.active {
+            max-height: 500px;
+        }
+        
+        .mobile-dropdown li a {
+            display: block;
+            padding: 12px 0 12px 15px;
+            color: #ccc;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .main-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 500px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .header-main {
+                padding: 10px 0;
+            }
+            
+            .logo {
+                width: 140px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .services-section, .insights-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container header-top-container">
+                <div class="header-top-links">
+                    <a href="#"><i class="fas fa-user"></i> Sign In</a>
+                    <a href="#"><i class="fas fa-globe"></i> Global</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container header-container">
+                <div class="logo">
+                    <a href="#">
+                        <!-- Accenture logo would go here -->
+                        <img src="D:\web development 2\Tut\iimg\Accenture logo.png" alt="Accenture">
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul class="main-nav-list">
+                        <li>
+                            <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <a href="#">Strategy & Consulting</a>
+                                <a href="#">Interactive</a>
+                                <a href="#">Technology</a>
+                                <a href="#">Operations</a>
+                                <a href="#">Industry X</a>
+                                <a href="#">Song</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Industries <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <a href="#">Banking</a>
+                                <a href="#">Capital Markets</a>
+                                <a href="#">Insurance</a>
+                                <a href="#">Health</a>
+                                <a href="#">Public Service</a>
+                                <a href="#">Retail</a>
+                                <a href="#">Travel</a>
+                                <a href="#">Energy</a>
+                                <a href="#">Utilities</a>
+                                <a href="#">High Tech</a>
+                                <a href="#">Communications & Media</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Careers <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <a href="#">Careers Home</a>
+                                <a href="#">Students</a>
+                                <a href="#">Experienced Professionals</a>
+                                <a href="#">People & Culture</a>
+                                <a href="#">Life at Accenture</a>
+                                <a href="#">Inclusion & Diversity</a>
+                                <a href="#">Interviewing at Accenture</a>
+                                <a href="#">Training & Development</a>
+                                <a href="#">Military</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Insights <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <a href="#">Blog</a>
+                                <a href="#">Case Studies</a>
+                                <a href="#">Podcasts</a>
+                                <a href="#">Reports</a>
+                                <a href="#">Surveys</a>
+                                <a href="#">Tech Vision</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                            <div class="dropdown">
+                                <a href="#">About Accenture</a>
+                                <a href="#">Leadership</a>
+                                <a href="#">History</a>
+                                <a href="#">Newsroom</a>
+                                <a href="#">Investors</a>
+                                <a href="#">Corporate Citizenship</a>
+                                <a href="#">Sustainability</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-btn"><i class="fas fa-search"></i></div>
+                    <div class="country-selector"><i class="fas fa-globe"></i></div>
+                    <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul class="mobile-nav-list">
+            <li>
+                <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#">Strategy & Consulting</a></li>
+                    <li><a href="#">Interactive</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Operations</a></li>
+                    <li><a href="#">Industry X</a></li>
+                    <li><a href="#">Song</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Industries <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#">Banking</a></li>
+                    <li><a href="#">Capital Markets</a></li>
+                    <li><a href="#">Insurance</a></li>
+                    <li><a href="#">Health</a></li>
+                    <li><a href="#">Public Service</a></li>
+                    <li><a href="#">Retail</a></li>
+                    <li><a href="#">Travel</a></li>
+                    <li><a href="#">Energy</a></li>
+                    <li><a href="#">Utilities</a></li>
+                    <li><a href="#">High Tech</a></li>
+                    <li><a href="#">Communications & Media</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Careers <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#">Careers Home</a></li>
+                    <li><a href="#">Students</a></li>
+                    <li><a href="#">Experienced Professionals</a></li>
+                    <li><a href="#">People & Culture</a></li>
+                    <li><a href="#">Life at Accenture</a></li>
+                    <li><a href="#">Inclusion & Diversity</a></li>
+                    <li><a href="#">Interviewing at Accenture</a></li>
+                    <li><a href="#">Training & Development</a></li>
+                    <li><a href="#">Military</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Insights <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Podcasts</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Surveys</a></li>
+                    <li><a href="#">Tech Vision</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                <ul class="mobile-dropdown">
+                    <li><a href="#">About Accenture</a></li>
+                    <li><a href="#">Leadership</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#">Corporate Citizenship</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Hero-Images/Accenture-Hero-Image-1.jpg');">
+                <div class="hero-content">
+                    <h1>Let there be change</h1>
+                    <p>We deliver on the promise of technology and human ingenuity</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Get in touch</a>
+                        <a href="#" class="btn btn-outline">Learn more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Hero-Images/Accenture-Hero-Image-2.jpg');">
+                <div class="hero-content">
+                    <h1>Reinvent your business for the future</h1>
+                    <p>Harness the power of change to create 360° value</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Explore insights</a>
+                        <a href="#" class="btn btn-outline">Our services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Hero-Images/Accenture-Hero-Image-3.jpg');">
+                <div class="hero-content">
+                    <h1>Shape the future of work</h1>
+                    <p>Discover how to build the workforce you need for the future</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Read the report</a>
+                        <a href="#" class="btn btn-outline">Careers at Accenture</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We help organizations transform their business to create value</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="D:\web_development\Tut\iimg" alt="Strategy & Consulting">
+                    </div>
+                    <div class="service-content">
+                        <h3>Strategy & Consulting</h3>
+                        <p>Shape strategies and transform operations to accelerate growth.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Services/Interactive.jpg" alt="Interactive">
+                    </div>
+                    <div class="service-content">
+                        <h3>Interactive</h3>
+                        <p>Create the best customer experiences on every platform.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Services/Technology.jpg" alt="Technology">
+                    </div>
+                    <div class="service-content">
+                        <h3>Technology</h3>
+                        <p>Modernize technology to deliver the innovation you need.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Services/Operations.jpg" alt="Operations">
+                    </div>
+                    <div class="service-content">
+                        <h3>Operations</h3>
+                        <p>Transform operations to achieve both growth and efficiency.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Services/Industry-X.jpg" alt="Industry X">
+                    </div>
+                    <div class="service-content">
+                        <h3>Industry X</h3>
+                        <p>Reinvent your core business and create new revenue streams.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Services/Song.jpg" alt="Song">
+                    </div>
+                    <div class="service-content">
+                        <h3>Song</h3>
+                        <p>Accenture's new business for business.</p>
+                        <a href="#" class="service-link">Learn more <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Insights</h2>
+                <p>Discover our latest thinking and research</p>
+            </div>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Insights/Insight-1.jpg" alt="Insight 1">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-category">Report</span>
+                        <h3>Technology Vision 2023</h3>
+                        <p>Discover four key trends that will help businesses navigate uncertainty and change.</p>
+                        <div class="insight-meta">
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                            <span><i class="far fa-calendar-alt"></i> Jan 2023</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Insights/Insight-2.jpg" alt="Insight 2">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-category">Article</span>
+                        <h3>The Future of Work</h3>
+                        <p>How to build the workforce you need for the future.</p>
+                        <div class="insight-meta">
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-calendar-alt"></i> Dec 2022</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-img">
+                        <img src="https://www.accenture.com/_acnmedia/Thought-Leadership-Assets/Images/Accenture-Insights/Insight-3.jpg" alt="Insight 3">
+                    </div>
+                    <div class="insight-content">
+                        <span class="insight-category">Podcast</span>
+                        <h3>Digital Transformation</h3>
+                        <p>Listen to industry leaders discuss the keys to successful digital transformation.</p>
+                        <div class="insight-meta">
+                            <span><i class="far fa-clock"></i> 32 min listen</span>
+                            <span><i class="far fa-calendar-alt"></i> Nov 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Strategy & Consulting</a></li>
+                        <li><a href="#">Interactive</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Operations</a></li>
+                        <li><a href="#">Industry X</a></li>
+                        <li><a href="#">Song</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Industries</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Banking</a></li>
+                        <li><a href="#">Capital Markets</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Health</a></li>
+                        <li><a href="#">Public Service</a></li>
+                        <li><a href="#">Retail</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Energy</a></li>
+                        <li><a href="#">Utilities</a></li>
+                        <li><a href="#">High Tech</a></li>
+                        <li><a href="#">Communications & Media</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Careers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Careers Home</a></li>
+                        <li><a href="#">Students</a></li>
+                        <li><a href="#">Experienced Professionals</a></li>
+                        <li><a href="#">People & Culture</a></li>
+                        <li><a href="#">Life at Accenture</a></li>
+                        <li><a href="#">Inclusion & Diversity</a></li>
+                        <li><a href="#">Interviewing at Accenture</a></li>
+                        <li><a href="#">Training & Development</a></li>
+                        <li><a href="#">Military</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Accenture</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Investors</a></li>
+                        <li><a href="#">Corporate Citizenship</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Locations</a></li>
+                        <li><a href="#">Contact Form</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    © 2023 Accenture. All Rights Reserved.
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-nav-list > li > a');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const dropdown = toggle.nextElementSibling;
+                dropdown.classList.toggle('active');
+                
+                // Rotate chevron icon
+                const icon = toggle.querySelector('i');
+                icon.style.transform = dropdown.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+            });
+        });
+        
+        // Hero Slider
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + heroSlides.length) % heroSlides.length;
+            heroSlides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Search Functionality
+        const searchBtn = document.querySelector('.search-btn');
+        
+        searchBtn.addEventListener('click', () => {
+            alert('Search functionality would be implemented here');
+        });
+        
+        // Country Selector
+        const countrySelector = document.querySelector('.country-selector');
+        
+        countrySelector.addEventListener('click', () => {
+            alert('Country selector would open here');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

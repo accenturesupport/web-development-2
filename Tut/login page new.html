@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login Page</title>
+    <link rel="stylesheet" href="styles 55.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="form-container">
+                <h1>Welcome Back</h1>
+                <p>Please login to your account</p>
+                
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                
+                <div class="footer">
+                    <a href="#">Forgot password?</a>
+                    <a href="#">Create account</a>
+                    <a href="Index.html">Home</a>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Login Image">
+            </div>
+        </div>
+    </div>
+    
+    <script src="script 33.js"></script>
+</body>
+</html>
